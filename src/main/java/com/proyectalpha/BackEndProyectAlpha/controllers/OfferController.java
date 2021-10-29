@@ -24,11 +24,20 @@ public class OfferController {
         this.offerRepo = offerRepo;
     }
 
+    /**
+     * Show all available offers
+     * @return JSON (All offers)
+     */
     @GetMapping("/api/offers")
     public List<Offer> findAll(){
         return offerRepo.findAll();
     }
 
+    /**
+     * Show an element based on a given id
+     * @param id
+     * @return JSON (Offer)
+     */
     @GetMapping("/api/offers/{id}")
     public ResponseEntity<Offer> findOneId(@PathVariable Long id){
         Optional<Offer> offerOpt = offerRepo.findById(id);
@@ -40,6 +49,11 @@ public class OfferController {
         }
     }
 
+    /**
+     * Create a new offer
+     * @param offer
+     * @return JSON (Offer)
+     */
     @PostMapping("/api/offers")
     public ResponseEntity<Offer> create(@RequestBody Offer offer) {
         if (offer.getId() != null) {
@@ -58,6 +72,11 @@ public class OfferController {
 
     }
 
+    /**
+     * Update an offer
+     * @param offer
+     * @return JSON (Offer)
+     */
     @PutMapping("/api/offers")
     public ResponseEntity<Offer> update(@RequestBody Offer offer){
         if (offer.getId() == null) {
@@ -75,6 +94,11 @@ public class OfferController {
         }
     }
 
+    /**
+     * Delete an offer by id
+     * @param id
+     * @return No content
+     */
     @DeleteMapping("/api/offers/{id}")
     public ResponseEntity<Offer> delete(@PathVariable Long id){
         if(!offerRepo.existsById(id)) {
@@ -87,6 +111,10 @@ public class OfferController {
         }
     }
 
+    /**
+     * Delete all offers
+     * @return No content
+     */
     @DeleteMapping("/api/offers")
     public ResponseEntity<Offer> deleteAll(){
         log.info("REST Request for Deleting all offers");
