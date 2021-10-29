@@ -24,7 +24,7 @@ public class BackEndProyectAlphaApplication {
 		Technology demoTech = new Technology(null, "javascript");
 		Technology demoTech1 = new Technology(null, "react");
 
-		Offer demoOffers = new Offer(null, "demoEnterprise", "demoOffer", "demoResponsibility", "demoRequeriments", "demoSummary", "demoSalary", "demoModality", new Date(), "demoLocation");
+		/**Offer demoOffers = new Offer(null, "demoEnterprise", "demoOffer", "demoResponsibility", "demoRequeriments", "demoSummary", "demoSalary", "demoModality", new Date(), "demoLocation");
 		Offer demoOffers1 = new Offer(null, "demoEnterprise1", "demoOffer1", "demoResponsibility1", "demoRequeriments1", "demoSummary1", "demoSalary1", "demoModality1", new Date(), "demoLocation1");
 
 		demoOffers.addTechnologies(demoTech);
@@ -32,7 +32,7 @@ public class BackEndProyectAlphaApplication {
 		demoOffers1.addTechnologies(demoTech1);
 
 		offerRepository.save(demoOffers);
-		offerRepository.save(demoOffers1);
+		offerRepository.save(demoOffers1);*/
 
 		System.out.println(offerRepository.findAll().size());
 

@@ -1,14 +1,13 @@
 package com.proyectalpha.BackEndProyectAlpha.controllers;
 
 import com.proyectalpha.BackEndProyectAlpha.models.Offer;
+import com.proyectalpha.BackEndProyectAlpha.models.Technology;
 import com.proyectalpha.BackEndProyectAlpha.repositories.OffersRepository;
 import com.proyectalpha.BackEndProyectAlpha.repositories.TechnologyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,4 +40,57 @@ public class OfferController {
         }
     }
 
+    @PostMapping("/api/offers")
+    public ResponseEntity<Offer> create(@RequestBody Offer offer) {
+        if (offer.getId() != null) {
+            log.warn("Trying to create a offer with id not null");
+            return ResponseEntity.badRequest().build();
+        }
+
+        for (Technology technology : offer.getTechnologies()) {
+            if (technology.getId() != null) {
+                log.warn("Trying to create a offer with id not null");
+                return ResponseEntity.badRequest().build();
+            }
+        }
+
+        return ResponseEntity.ok(offerRepo.save(offer));
+
+    }
+
+    @PutMapping("/api/offers")
+    public ResponseEntity<Offer> update(@RequestBody Offer offer){
+        if (offer.getId() == null) {
+            log.warn("Trying to update a non existent offer");
+            return ResponseEntity.badRequest().build();
+        }
+
+        else if(!offerRepo.existsById(offer.getId())) {
+            log.warn("Trying to update a non existent offer");
+            return ResponseEntity.notFound().build();
+        }
+
+        else {
+            return ResponseEntity.ok(offerRepo.save(offer));
+        }
+    }
+
+    @DeleteMapping("/api/offers/{id}")
+    public ResponseEntity<Offer> delete(@PathVariable Long id){
+        if(!offerRepo.existsById(id)) {
+            log.warn("Trying to delete a non existent offer");
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            offerRepo.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @DeleteMapping("/api/offers")
+    public ResponseEntity<Offer> deleteAll(){
+        log.info("REST Request for Deleting all offers");
+        offerRepo.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
 }
