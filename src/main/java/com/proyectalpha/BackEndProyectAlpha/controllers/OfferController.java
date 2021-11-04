@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class OfferController {
 
@@ -55,7 +54,7 @@ public class OfferController {
      * @param offer
      * @return JSON (Offer)
      */
-    @PostMapping("/api/offers")
+    @PostMapping("/api/enterprise")
     public ResponseEntity<Offer> create(@RequestBody Offer offer) {
         if (offer.getId() != null) {
             log.warn("Trying to create a offer with id not null");
@@ -78,7 +77,7 @@ public class OfferController {
      * @param offer
      * @return JSON (Offer)
      */
-    @PutMapping("/api/offers")
+    @PutMapping("/api/enterprise")
     public ResponseEntity<Offer> update(@RequestBody Offer offer){
         if (offer.getId() == null) {
             log.warn("Trying to update a non existent offer");
@@ -100,7 +99,7 @@ public class OfferController {
      * @param id
      * @return No content
      */
-    @DeleteMapping("/api/offers/{id}")
+    @DeleteMapping("/api/enterprise/{id}")
     public ResponseEntity<Offer> delete(@PathVariable Long id){
         if(!offerRepo.existsById(id)) {
             log.warn("Trying to delete a non existent offer");
@@ -116,7 +115,7 @@ public class OfferController {
      * Delete all offers
      * @return No content
      */
-    @DeleteMapping("/api/offers")
+    @DeleteMapping("/api/enterprise")
     public ResponseEntity<Offer> deleteAll(){
         log.info("REST Request for Deleting all offers");
         offerRepo.deleteAll();

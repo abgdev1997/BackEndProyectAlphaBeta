@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="BackEndProyectAlphaBeta" />
         <module name="BackEndProyectAlpha-master" />
         <module name="BackEndProyectAlpha" />
       </profile>
@@ -15,6 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="BackEndProyectAlpha" options="-parameters" />
       <module name="BackEndProyectAlpha-master" options="-parameters" />
+      <module name="BackEndProyectAlphaBeta" options="-parameters" />
     </option>
   </component>
 </project>

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "Offers")
+@Table(name = "app_offers")
 public class Offer {
 
     @Id
@@ -27,7 +27,7 @@ public class Offer {
     @JsonManagedReference
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name="Offers_has_Technologies"
+    @JoinTable(name="offers_has_technologies"
             ,joinColumns = @JoinColumn(name="offers_id")
             ,inverseJoinColumns = @JoinColumn(name="technologies_id")
     )
