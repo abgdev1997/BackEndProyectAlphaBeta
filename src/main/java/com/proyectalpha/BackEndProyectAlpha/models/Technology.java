@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "Technologies")
+@Table(name = "app_technologies")
 public class Technology {
 
     @Id

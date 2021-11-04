@@ -3,7 +3,7 @@ package com.proyectalpha.BackEndProyectAlpha.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="ROLES")
+@Table(name="app_roles")
 public class Role {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

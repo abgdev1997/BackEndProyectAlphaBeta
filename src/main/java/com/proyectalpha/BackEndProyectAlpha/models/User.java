@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="USER")
+@Table(name="app_user")
 public class User {
 
     @Id
@@ -17,11 +17,11 @@ public class User {
     private String username;
 
     @Column
-    @JsonIgnore
-    private String password;
+    private String email;
 
     @Column
-    private String email;
+    @JsonIgnore
+    private String password;
 
     @Column
     private String phone;
@@ -32,44 +32,44 @@ public class User {
     @Column
     private String titles;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_ROLES",
+    /**@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
             joinColumns = {
-                    @JoinColumn(name = "USER_ID")
+                    @JoinColumn(name = "user_id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "ROLE_ID") })
-    private Set<Role> roles;
+                    @JoinColumn(name = "role_id") })
+    private Set<Role> roles;*/
 
     public User() {
     }
 
-    public User(String username, String password, String email) {
+    public User(String username, String email, String password) {
         this.username = username;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
-    public User(Long id, String username, String password, String email, String phone, String name, String titles) {
+    public User(Long id, String username, String email, String password, String phone, String name, String titles) {
         this.id = id;
         this.username = username;
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.phone = phone;
         this.name = name;
         this.titles = titles;
     }
 
-    public User(Long id, String username, String password, String email, String phone, String name, String titles, Set<Role> roles) {
+    /**public User(Long id, String username, String email, String password, String phone, String name, String titles, Set<Role> roles) {
         this.id = id;
         this.username = username;
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.phone = phone;
         this.name = name;
         this.titles = titles;
         this.roles = roles;
-    }
+    }*/
 
     public Long getId() {
         return id;
@@ -127,11 +127,12 @@ public class User {
         this.titles = titles;
     }
 
-    public Set<Role> getRoles() {
+    /**public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
+    }*/
+
 }
