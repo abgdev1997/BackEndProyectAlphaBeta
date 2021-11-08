@@ -33,7 +33,7 @@ public class AuthController {
     }
 
     @GetMapping("/users")
-    public Iterable<User> findAll(){
+    public Iterable<User> findAllUsers(){
         return userRepository.findAll();
     }
 
